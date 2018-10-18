@@ -1,8 +1,6 @@
 <template>
     <div>
-        <ul>
-            <li></li>
-        </ul>
+        首页
     </div>
 </template>
 

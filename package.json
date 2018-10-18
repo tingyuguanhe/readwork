@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "element-ui": "^2.4.8",
+    "lodash": "^4.17.11",
     "node-sass": "^4.9.4",
     "sass-loader": "^7.1.0",
     "vue": "^2.5.2",

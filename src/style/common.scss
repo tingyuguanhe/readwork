@@ -1,0 +1,38 @@
+$theme_color: #f85415;
+html,body{
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+ul li{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.f_l{
+    float: left;
+}
+
+.f_r{
+    float: right;
+}
+
+.el-button--primary,.el-button--primary:focus, .el-button--primary:hover{
+    background: $theme_color;
+    border-color: $theme_color;
+}
+
+.el-input.is-active .el-input__inner, .el-input__inner:focus{
+    border-color: #f85415;
+}
+
+a{
+    color: #15b5f8;
+}
+
+.nr_wrap{
+    width: 1200px;
+    margin: 0 auto;
+}
