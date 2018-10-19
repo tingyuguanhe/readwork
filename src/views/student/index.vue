@@ -3,11 +3,25 @@
         <div class="title"> 
             <div class="nr_wrap">
                 <h1>Spicy Seafood Pasta</h1>
-                <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" background-color="transparent" text-color="#666"
-                active-text-color="#f85415">
-                    <el-menu-item index="1">Assignments To Do</el-menu-item>
-                    <el-menu-item index="2">Submitted Assignments</el-menu-item>
-                </el-menu>
+            
+                <el-tabs v-model="activeName" @tab-click="handleClick">
+                    <el-tab-pane label="Assignments To Do" name="first">
+                        <div class="pane_wrap">
+                            <div class="head">
+                                    <div>
+                                        Assignments To Do
+                                    </div>
+                                    <div>
+                                        Due Date
+                                    </div>
+                            </div>
+                            
+                        </div>
+                        
+                        
+                    </el-tab-pane>
+                    <el-tab-pane label="Submitted Assignments" name="second">Submitted Assignments</el-tab-pane>
+                </el-tabs>
             </div>
         </div>
     </div>
@@ -17,12 +31,20 @@
 export default{
     data(){
         return{
-            activeIndex: '1',
+            activeName: 'first',
+            tabs:[
+                {
+                    name:'Assignments To Do',
+                },
+                {
+                    name:'Submitted Assignments'
+                }
+            ]
         }
     },
     methods: {
-        handleSelect(key, keyPath) {
-            console.log(key, keyPath);
+        handleClick(tab, event) {
+            console.log(tab, event);
         }
     }
 }
@@ -34,22 +56,34 @@ export default{
     h1{
         margin:0;
         padding: 0;
-        height: 100px;
-        line-height: 100px;
+        height: 95px;
+        line-height: 85px;
     }
     .title{
         height: 130px;
-        background: #efefef;
+        background: #f5f8f8;
         font-size: 22px;
-        border: 2px solid #dbdbdb;
+        border: 2px solid #e4e7ed;
         text-align: left;
     }
-    .el-menu--horizontal > .el-menu-item{
-        height: 31px;
-        line-height: 25px;
-        border-color: #dbdbdb;
-        &:visited,&:hover,&:active{
-            background: transparent !important;
+    .el-tabs__active-bar{
+        background-color: #f85415;
+    }
+    .el-tabs__item.is-active{
+        color: #f85415;
+    }
+    .el-tabs__item{
+        height: 37px;
+        line-height: 36px;
+        color: #838a8e;
+        font-size: 16px;
+    }
+    .pane_wrap{
+        .head{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            color: #838a8e;
         }
     }
 }

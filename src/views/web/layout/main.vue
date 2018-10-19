@@ -10,6 +10,7 @@
 
 <script>
 import navBar from './nav'
+
 export default {
   components: {navBar}
 }

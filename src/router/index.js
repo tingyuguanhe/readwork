@@ -28,7 +28,8 @@ const router = new Router({
           component: WebIndex,
           text:'首页',
           meta:{
-            title:'首页'
+            title:'首页',
+            navShow: true
           }
         },
         {
@@ -37,11 +38,21 @@ const router = new Router({
           component: WebIndex,
           text:'登录',
           meta:{
-            title:'登录'
+            title:'登录',
+            navShow: true
           }
         },
+        
+      ]
+    },
+
+    {
+      path: '/student',
+      name: 'layout',
+      component: Layout,
+      children:[
         {
-          path: '/stu_login',
+          path: 'login',
           name: 'studentLogin',
           component: StudentLogin,
           text:'学生登录',
@@ -50,7 +61,7 @@ const router = new Router({
           }
         },
         {
-          path: '/stu_login_authentication',
+          path: 'login_authentication',
           name: 'studentLoginAuthentication',
           component: StudentLoginAuthentication,
           text:'学生登录',
@@ -59,7 +70,7 @@ const router = new Router({
           }
         },
         {
-          path: '/stu_login_confirm/:name',
+          path: 'login_confirm/:name',
           name: 'studentLoginConfirm',
           component: StudentLoginConfirm,
           text:'学生登录',
@@ -68,21 +79,19 @@ const router = new Router({
           }
         },
         {
-          path: '/stu_index',
+          path: 'index',
           name: 'studentIndex',
           component: StudentIndex,
           text:'学生',
           meta:{
-            title:'学生',
-            studentShow: true
+            title:'学生'
           }
         }
-        
-
       ]
-      
-    },
+    }
+
     
+
     
   ]
 })

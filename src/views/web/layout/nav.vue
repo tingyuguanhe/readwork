@@ -4,43 +4,62 @@
             <div class="logo">
                 logo
             </div>
-            <el-menu :default-active="$route.path" v-cloak class="el-menu-demo menu_nav"
-            mode="horizontal"  background-color="#f85415" :router="true"
-            text-color="#fff" active-text-color="#fff">
-                <el-menu-item v-for="item in menu_routes" v-if="!username && !!item.meta.studentShow" :key="item.name" :index="item.path">
-                    <span>{{item.text}}</span>
-                </el-menu-item>
-                <el-menu-item v-for="item in menu_routes" v-if="!!username && item.path != '/login' && !!item.meta.studentShow" :key="item.name" :index="item.path">
-                    <span>{{username}}，你好！</span>
-                </el-menu-item>
-                <el-menu-item index="" v-if="!!username" @click="login_out">
-                    <span>Log Out</span>
-                </el-menu-item>
-            </el-menu>
+            <div v-if="!isStudentPage">
+                <el-menu :default-active="$route.path" v-cloak class="el-menu-demo menu_nav"
+                mode="horizontal"  background-color="#f85415" :router="true"
+                text-color="#fff" active-text-color="#fff">
+                    <el-menu-item v-for="item in menu_routes" v-if="!!item.meta.navShow && !isStudentPage" :key="item.name" :index="item.path">
+                        <span>{{item.text}}</span>
+                    </el-menu-item>
+                    <el-menu-item index="/student/login">
+                        <div>学生登录</div>
+                    </el-menu-item>
+                </el-menu>
+            </div>
+            <div v-else>
+                <el-menu :default-active="$route.path" v-cloak class="el-menu-demo menu_nav"
+                mode="horizontal"  background-color="#f85415" :router="true"
+                text-color="#fff" active-text-color="#fff">
+                    <el-menu-item index="">
+                        <div>你好，{{username}}</div>
+                    </el-menu-item>
+                    <el-menu-item index="" v-if="!!username" @click="login_out">
+                        <span>Log Out</span>
+                    </el-menu-item>
+                </el-menu>
+            </div>
         </div>
     </el-header>
 </template>
 
-
 <script>
-
     export default{
         data(){
             return{
                 activeMenu:'login',
-                searchBarFixed: false,
+                searchBarFixed: false
             }
         },
         mounted () {
             window.addEventListener('scroll', this.handleScroll)
         },
         computed: {
+            routes(){
+                return this.$router.options.routes;
+            },
             menu_routes () {
                 return this.$router.options.routes[0].children
             },
             username(){
-                console.log(45678);
-                return sessionStorage.getItem('username');
+                return localStorage.getItem('username');
+            },
+            isStudentPage(){
+                if(this.$route.path.indexOf('student') > -1){
+
+                    return true;
+                }else{
+                    return false;
+                }
             }
         },
         methods: {

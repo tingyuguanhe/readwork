@@ -49,7 +49,7 @@
                 submitForm(formName) {
                     this.$refs[formName].validate((valid) => {
                         if (valid) {
-                            sessionStorage.setItem('username', this.username);
+                            localStorage.setItem('username', this.username);
                             this.$router.push({name: 'studentIndex'});
                         } else {
                             console.log('error submit!!');
