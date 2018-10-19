@@ -8,8 +8,8 @@
         <div class="page_content">
             <div class="nr_wrap">
                 <div class="nr_content">
-                    <el-tabs v-model="activeName" @tab-click="handleClick">
-                        <el-tab-pane label="Assignments To Do" name="first">
+                    <el-tabs v-model="activeIndex" @tab-click="handleClick">
+                        <el-tab-pane label="Assignments To Do" name="0">
                             <div class="pane_wrap">
                                 <div class="head">
                                     <div>Assignments To Do</div>
@@ -18,13 +18,15 @@
                             </div>
                             <ul class="article_list">
                                 <li v-for="(item,index) in articleList" :key="index">
-                                    <img :src="item.img" alt="">
-                                    <div class="article_content">
-                                        <div class="article_title">{{item.title}}</div>
-                                        <div class="has_audio" v-if="item.hasAudio">Includes Audio</div>
-                                        <div class="study_status" v-if="!!item.study_status">
-                                            <span :class="{'unfinished': item.study_status == 'unfinished', 'continue': item.study_status == 'continue'}">{{item.study_status}}</span>
-                                        </div>
+                                    <div class="article_wrap" @click="viewArticle(item)">
+                                        <img :src="item.img" alt="">
+                                        <div class="article_content">
+                                            <div class="article_title">{{item.title}}</div>
+                                            <div class="has_audio" v-if="item.hasAudio">Includes Audio</div>
+                                            <div class="study_status" v-if="!!item.study_status">
+                                                <span :class="{'unfinished': item.study_status == 'unfinished', 'continue': item.study_status == 'continue'}">{{item.study_status}}</span>
+                                            </div>
+                                        </div> 
                                     </div>
                                     <div class="date">
                                         {{item.date}}
@@ -32,7 +34,7 @@
                                 </li>
                             </ul>
                         </el-tab-pane>
-                        <el-tab-pane label="Submitted Assignments" name="second">
+                        <el-tab-pane label="Submitted Assignments" name="1">
                             <div class="pane_wrap">
                                 <div class="head">
                                     <div>Submitted Assignments</div>
@@ -40,13 +42,15 @@
                                 </div>
                                 <ul class="article_list">
                                     <li v-for="(item,index) in submittedArticleList" :key="index">
-                                        <img :src="item.img" alt="">
-                                        <div class="article_content">
-                                            <div class="article_title">{{item.title}}</div>
-                                            <div class="has_audio" v-if="item.hasAudio">Includes Audio</div>
-                                            <div class="has_intro" v-if="!!item.intro">{{item.intro}}</div>
-                                            <div class="study_result">
-                                                <el-button type="primary">查看结果</el-button>
+                                        <div class="article_wrap" @click="viewArticle(item)">
+                                            <img :src="item.img" alt="">
+                                            <div class="article_content">
+                                                <div class="article_title">{{item.title}}</div>
+                                                <div class="has_audio" v-if="item.hasAudio">Includes Audio</div>
+                                                <div class="has_intro" v-if="!!item.intro">{{item.intro}}</div>
+                                                <div class="study_result">
+                                                    <el-button type="primary">查看结果</el-button>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="date">
@@ -67,7 +71,7 @@
 export default{
     data(){
         return{
-            activeName: 'first',
+            activeIndex: '0',
             tabs:[
                 {
                     name:'Assignments To Do',
@@ -119,7 +123,7 @@ export default{
                 }
             ],
             submittedArticleList:[
-            {
+                {
                     id:1,
                     title:'Should You Be Afraid of Sharks?',
                     date: '2018年10月12日',
@@ -148,8 +152,11 @@ export default{
         }
     },
     methods: {
-        handleClick(tab, event) {
-            console.log(tab, event);
+        handleClick(tab) {
+            console.log(this.activeIndex);
+        },
+        viewArticle(item){
+            this.$router.push({name:'articleStudent', params:{id: item.id, type: 'article'}});
         }
     }
 }
@@ -209,6 +216,10 @@ export default{
             display: flex;
             border-bottom: 1px solid #dcdee0;
             padding: 28px 0;
+            .article_wrap{
+                cursor: pointer;
+                display: flex;
+            }
             .date{
                 font-size: 15px;
                 color: #838a8e;

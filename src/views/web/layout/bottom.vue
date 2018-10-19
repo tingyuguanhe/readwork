@@ -11,7 +11,7 @@
     border-top: 1px solid #e4e7ed;
     height: 150px;
     line-height: 150px;
-    font-size: 13px;
+    font-size: 12px;
     color: #838a8e;
 }
 </style>

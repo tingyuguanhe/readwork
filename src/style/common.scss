@@ -27,13 +27,24 @@ ul,li{
 .el-input.is-active .el-input__inner, .el-input__inner:focus{
     border-color: #f85415;
 }
+.el-tabs--border-card>.el-tabs__header .el-tabs__item.is-active{
+    color: #f85415;
+}
 
+.el-tabs--border-card>.el-tabs__header .el-tabs__item:not(.is-disabled):hover{
+    color: #f85415;
+}
 a{
     color: #15b5f8;
 }
 
 .nr_wrap{
     width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+.article_wrap{
+    width: 1200px;
     margin: 0 auto;
     position: relative;
 }

@@ -10,6 +10,9 @@ import StudentLogin from '@/views/student/login'
 import StudentLoginAuthentication from '@/views/student/login_authentication'
 import StudentLoginConfirm from '@/views/student/login_confirm'
 import StudentIndex from '@/views/student/index'
+import StudentArticle from '@/views/student/article'
+import StudentVocabulary from '@/views/student/vocabulary'
+import StudentQuestions from '@/views/student/questions'
 
 
 
@@ -55,7 +58,6 @@ const router = new Router({
           path: 'login',
           name: 'studentLogin',
           component: StudentLogin,
-          text:'学生登录',
           meta:{
             title:'学生登录'
           }
@@ -64,7 +66,6 @@ const router = new Router({
           path: 'login_authentication',
           name: 'studentLoginAuthentication',
           component: StudentLoginAuthentication,
-          text:'学生登录',
           meta:{
             title:'学生登录'
           }
@@ -73,7 +74,6 @@ const router = new Router({
           path: 'login_confirm/:name',
           name: 'studentLoginConfirm',
           component: StudentLoginConfirm,
-          text:'学生登录',
           meta:{
             title:'学生登录'
           }
@@ -82,11 +82,35 @@ const router = new Router({
           path: 'index',
           name: 'studentIndex',
           component: StudentIndex,
-          text:'学生',
           meta:{
             title:'学生'
           }
+        },
+        {
+          path: 'article/:id/:type',
+          name: 'articleStudent',
+          component: StudentArticle,
+          meta:{
+            title:'文章'
+          }
+        },
+        {
+          path: 'vocabulary/:id/:type',
+          name: 'vocabularyStudent',
+          component: StudentVocabulary,
+          meta:{
+            title:'词汇'
+          }
+        },
+        {
+          path: 'questions/:id/:type',
+          name: 'questionsStudent',
+          component: StudentQuestions,
+          meta:{
+            title:'问题'
+          }
         }
+        
       ]
     }
 
