@@ -4,42 +4,47 @@
             <article-head></article-head>
         </div>
         <div class="content article_wrap">
-            <tabs>
+            <article-tabs @isBackTop="backTop" :scrollHeight="scrollTop" @scrollTop="getScrollTop">
                 <div slot="article" class="nr_wrap">
                     <h1>a famous song</h1>
                     <h2>A famous song called the music heal your soul</h2>  
                     <div class="pic">
-                        <img src="../../assets/imgs/pic.png" width="450">
+                        <img src="../../assets/imgs/pic.png" width="500">
                     </div>
                     <p>There is a famous song, which called let the music heal your soul. A lot of young people have their favorite singers. When they see their idols face to face, they would say thank you to the singers, because their songs inspire these young people to move on in the dark days. The songs deliver positive messages to the public and inspire them to never give up.</p>
                     <p>Listening to the music is the main way for the young people to release their pressure. Every day before I sleep, I will listen to the light music, which helps me to take relax and make me sleep well. The reason why so many people like to KTV after their work lies in releasing pressure. They need to shout and then forget about the annoyance. </p>
-                    <p>Music is favored by everyone and it is the indispensable part of our life. </p>
+                    <p>Music is favored by everyone and it is the indispensable part of our life.Music is favored by everyone and it is the indispensable part of our life.Music is favored by everyone and it is the indispensable part of our life. </p>
                 </div>
-            </tabs>
+            </article-tabs>
         </div>
-        
+        <div class="back_top" v-if="backToTop" @click="goBackTop">
+            <span>返回顶部</span>
+        </div>
     </div>  
 </template>
 
 <script>
-import Tabs from '@/components/student_article_tabs'
+import articleTabs from '@/components/student_article_tabs'
 import articleHead from '@/components/article_head'
+import mixin from '@/views/mixins/mixin'
 
 export default{
     data(){
         return{
-            activeName2: 'first'
+            activeName2: 'first',
         }
     },
-    components:{Tabs,articleHead},
+    components:{articleTabs,articleHead},
+    mixins:[mixin],
     methods: {
-       
+      
     }
 }
 </script>
 
 <style lang="scss">
 .article_page{
+    position: relative;
     .article_wrap{
         display: flex;
         justify-content: space-between;

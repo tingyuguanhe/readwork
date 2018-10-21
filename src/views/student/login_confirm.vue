@@ -1,32 +1,32 @@
 <template>
-        <div class="student_confirm clearfix">
-            <div class="conttent">
-                <div class="login_wrap">
-                    <div class="head">
-                        <h1>Welcome, {{username}}!</h1>
-                        <p><router-link class="back_page" to="/stu_login_authentication">我不是 {{username}} </router-link></p>
-                    </div>
-                    <div class="body">
-                        <el-form :model="ruleForm2" :rules="rules" ref="ruleForm2" class="name_form">   
-                            <el-form-item label="" prop="password">
-                                <el-input v-model.number="ruleForm2.password" placeholder="请输入密码"></el-input>
-                            </el-form-item>
-                            <el-form-item>
-                                <el-button type="primary" @click="submitForm('ruleForm2')">Continue</el-button>
-                            </el-form-item>
-                           
-                        </el-form>
-                    </div>
+    <div class="student_confirm clearfix">
+        <div class="conttent">
+            <div class="login_wrap">
+                <div class="head">
+                    <h1>Welcome, {{username}}!</h1>
+                    <p><router-link class="back_page" to="/stu_login_authentication">我不是 {{username}} </router-link></p>
+                </div>
+                <div class="body">
+                    <el-form :model="ruleForm2" :rules="rules" ref="ruleForm2" class="name_form">   
+                        <el-form-item label="" prop="password">
+                            <el-input v-model.number="ruleForm2.password" placeholder="请输入密码"></el-input>
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button type="primary" @click="submitForm('ruleForm2')">Continue</el-button>
+                        </el-form-item>
+                        
+                    </el-form>
                 </div>
             </div>
-            <div class="teacher_login">
-                Are you a teacher? <a href="javascript:;"> &nbsp;Teacher LogIn&nbsp;</a>   
-            </div>
-       
         </div>
-    </template>
+        <teacher-login-link></teacher-login-link>
+        <bottom></bottom>
+    </div>
+</template>
     
     <script>
+        import Bottom from '@/views/web/layout/bottom'
+        import teacherLoginLink from '@/components/teacher_login_link'
         export default{
             data(){
                 return{
@@ -42,6 +42,7 @@
                    
                 }
             },
+            components:{Bottom,teacherLoginLink},
             mounted () {
                 this.username = this.$route.params.name;
             },

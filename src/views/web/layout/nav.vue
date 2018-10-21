@@ -36,13 +36,10 @@
     export default{
         data(){
             return{
-                activeMenu:'login',
-                searchBarFixed: false
+                activeMenu:'login'
             }
         },
-        mounted () {
-            window.addEventListener('scroll', this.handleScroll)
-        },
+        
         computed: {
             routes(){
                 return this.$router.options.routes;
@@ -63,16 +60,7 @@
             }
         },
         methods: {
-            handleScroll () {
-                var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-                var offsetTop = document.querySelector('header').offsetTop;
-                //console.log(scrollTop);
-                if (scrollTop > offsetTop) {
-                    this.searchBarFixed = true
-                } else {
-                    this.searchBarFixed = false
-                }
-            },
+            
             login_out(){
 
             }

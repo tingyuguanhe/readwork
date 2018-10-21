@@ -32,6 +32,7 @@
                     padding: 10px 15px;
                     background: #fff;
                     font-size: 14px;
+                    cursor: pointer;
                 }
             }
         }

@@ -1,69 +1,73 @@
 <template>
     <div class="student_page">
-        <div class="title"> 
+        <div class="title" :class="{'title_fixed':scrollFixed}"> 
             <div class="nr_wrap">
                 <h1>Spicy Seafood Pasta</h1>
+                <el-tabs v-model="activeIndex" @tab-click="handleClick">
+                    <el-tab-pane label="Assignments To Do" name="0"></el-tab-pane>
+                    <el-tab-pane label="Submitted Assignments" name="1"></el-tab-pane>
+                </el-tabs>
             </div>
         </div>
         <div class="page_content">
             <div class="nr_wrap">
                 <div class="nr_content">
-                    <el-tabs v-model="activeIndex" @tab-click="handleClick">
-                        <el-tab-pane label="Assignments To Do" name="0">
-                            <div class="pane_wrap">
-                                <div class="head">
-                                    <div>Assignments To Do</div>
-                                    <div class="date">Due Date</div>
-                                </div>
+                    <div v-if="activeIndex == 0">
+                        <div class="pane_wrap">
+                            <div class="head">
+                                <div>Assignments To Do</div>
+                                <div class="date">Due Date</div>
                             </div>
-                            <ul class="article_list">
-                                <li v-for="(item,index) in articleList" :key="index">
-                                    <div class="article_wrap" @click="viewArticle(item)">
-                                        <img :src="item.img" alt="">
-                                        <div class="article_content">
-                                            <div class="article_title">{{item.title}}</div>
-                                            <div class="has_audio" v-if="item.hasAudio">Includes Audio</div>
-                                            <div class="study_status" v-if="!!item.study_status">
-                                                <span :class="{'unfinished': item.study_status == 'unfinished', 'continue': item.study_status == 'continue'}">{{item.study_status}}</span>
-                                            </div>
-                                        </div> 
+                        </div>
+                        <ul class="article_list">
+                            <li v-for="(item,index) in articleList" :key="index">
+                                <div class="article_wrap" @click="viewArticle(item)">
+                                    <img :src="item.img" alt="">
+                                    <div class="article_content">
+                                        <div class="article_title">{{item.title}}</div>
+                                        <div class="has_audio" v-if="item.hasAudio">Includes Audio</div>
+                                        <div class="study_status" v-if="!!item.study_status">
+                                            <span :class="{'unfinished': item.study_status == 'unfinished', 'continue': item.study_status == 'continue'}">{{item.study_status}}</span>
+                                        </div>
+                                    </div> 
+                                    <div class="date">
+                                        {{item.date}}
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div v-if="activeIndex == 1">
+                        <div class="pane_wrap">
+                            <div class="head">
+                                <div>Submitted Assignments</div>
+                                <div class="date">Date Submitted</div>
+                            </div>
+                        </div>
+                        <ul class="article_list">
+                            <li v-for="(item,index) in submittedArticleList" :key="index">
+                                <div class="article_wrap" @click="viewArticle(item)">
+                                    <img :src="item.img" alt="">
+                                    <div class="article_content">
+                                        <div class="article_title">{{item.title}}</div>
+                                        <div class="has_audio" v-if="item.hasAudio">Includes Audio</div>
+                                        <div class="has_intro" v-if="!!item.intro">{{item.intro}}</div>
+                                        <div class="study_result">
+                                            <el-button type="primary">查看结果</el-button>
+                                        </div>
                                     </div>
                                     <div class="date">
                                         {{item.date}}
                                     </div>
-                                </li>
-                            </ul>
-                        </el-tab-pane>
-                        <el-tab-pane label="Submitted Assignments" name="1">
-                            <div class="pane_wrap">
-                                <div class="head">
-                                    <div>Submitted Assignments</div>
-                                    <div class="date">Date Submitted</div>
                                 </div>
-                                <ul class="article_list">
-                                    <li v-for="(item,index) in submittedArticleList" :key="index">
-                                        <div class="article_wrap" @click="viewArticle(item)">
-                                            <img :src="item.img" alt="">
-                                            <div class="article_content">
-                                                <div class="article_title">{{item.title}}</div>
-                                                <div class="has_audio" v-if="item.hasAudio">Includes Audio</div>
-                                                <div class="has_intro" v-if="!!item.intro">{{item.intro}}</div>
-                                                <div class="study_result">
-                                                    <el-button type="primary">查看结果</el-button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="date">
-                                            {{item.date}}
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </el-tab-pane>
-                    </el-tabs>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
+        
     </div>
 </template>
 
@@ -147,9 +151,13 @@ export default{
                     hasAudio: true,
                     img: require('../../assets/imgs/4.jpg')
                 }
-            ]
+            ],
+            scrollFixed: false
 
         }
+    },
+    mounted () {
+        window.addEventListener('scroll', this.handleScroll)
     },
     methods: {
         handleClick(tab) {
@@ -157,7 +165,17 @@ export default{
         },
         viewArticle(item){
             this.$router.push({name:'articleStudent', params:{id: item.id, type: 'article'}});
-        }
+        },
+        handleScroll () {
+            var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+            // var offsetTop = document.querySelector('header').offsetTop;
+            //console.log(offsetTop);
+            if (scrollTop > 100) {
+                this.scrollFixed = true;
+            } else {
+                this.scrollFixed = false;
+            }
+        },
     }
 }
 </script>
@@ -168,7 +186,7 @@ export default{
     h1{
         margin:0;
         padding: 0;
-        height: 95px;
+        height: 92px;
         line-height: 85px;
     }
     .title{
@@ -177,9 +195,19 @@ export default{
         font-size: 22px;
         border: 2px solid #e4e7ed;
         text-align: left;
+        &.title_fixed{
+            position: fixed;
+            left: 0;
+            top:0;
+            width: 100%;
+            z-index: 100;
+        }
     }
-    .nr_content{
-        margin-top: -40px;
+    .page_content{
+        margin:50px 0;
+        .nr_content{
+            margin-top: -40px;
+        }
     }
     .el-tabs__active-bar{
         background-color: #f85415;
@@ -207,8 +235,8 @@ export default{
             padding: 24px 0;
         }
         .date{
-            font-size: 15px;
-            line-height: 28px;
+            font-size: 16px;
+            color: #838a8e;
         }
     }
     .article_list{
@@ -221,7 +249,7 @@ export default{
                 display: flex;
             }
             .date{
-                font-size: 15px;
+                font-size: 14px;
                 color: #838a8e;
             }
             img{
@@ -230,6 +258,7 @@ export default{
             }
             .article_title{
                 color: #f85415;
+                font-size: 22px;
             }
             .has_audio,.has_intro{
                 font-size: 14px;

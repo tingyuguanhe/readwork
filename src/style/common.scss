@@ -5,10 +5,12 @@ html,body{
     color: #333;
 }
 
-ul,li{
+ul{
+    li{
+        list-style: none;
+    }   
     padding: 0;
     margin: 0;
-    list-style: none;
 }
 
 .f_l{
@@ -47,4 +49,19 @@ a{
     width: 1200px;
     margin: 0 auto;
     position: relative;
+}
+
+.back_top{
+    position: fixed;
+    right: 40px;
+    bottom: 45px;
+    width: 42px;
+    height: 42px;
+    background: #f85415;
+    color:#fff;
+    text-align: center;
+    font-size: 12px;
+    padding: 5px;
+    box-sizing: border-box;
+    cursor: pointer;
 }

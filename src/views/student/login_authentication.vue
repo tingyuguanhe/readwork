@@ -20,14 +20,14 @@
                 </div>
             </div>
         </div>
-        <div class="teacher_login">
-            Are you a teacher? <a href="javascript:;"> &nbsp;Teacher LogIn&nbsp;</a>   
-        </div>
-   
+        <teacher-login-link></teacher-login-link>
+        <bottom></bottom>
     </div>
 </template>
 
 <script>
+    import Bottom from '@/views/web/layout/bottom'
+    import teacherLoginLink from '@/components/teacher_login_link'
     export default{
         data(){
             return{
@@ -56,6 +56,7 @@
                 
             }
         },
+        components:{Bottom,teacherLoginLink},
         watch: {
             'ruleForm2.name': function(newVal, oldVal){
                 if(newVal == oldVal){
@@ -101,11 +102,7 @@
         .body{
             padding: 0 20px;
         }
-        .teacher_login{
-            margin-top: 40px;
-            color: #666;
-            font-size: 13px;
-        }
+        
         .name_form{
             .el-form-item__content{
                 font-size: 18px;

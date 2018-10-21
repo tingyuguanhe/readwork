@@ -19,14 +19,14 @@
                 </div>
             </div>
         </div>
-        <div class="teacher_login">
-            Are you a teacher? <a href="javascript:;"> &nbsp;Teacher LogIn&nbsp;</a>   
-        </div>
-   
+        <teacher-login-link></teacher-login-link>
+        <bottom></bottom>
     </div>
 </template>
 
 <script>
+    import Bottom from '@/views/web/layout/bottom'
+    import teacherLoginLink from '@/components/teacher_login_link'
     export default{
         data(){
             return{
@@ -40,6 +40,7 @@
                 }
             }
         },
+        components:{Bottom,teacherLoginLink},
         methods: {
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
