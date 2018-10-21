@@ -1,7 +1,7 @@
 <template>
     <div class="article_head">
         <div class="article_wrap">
-            <div class="back">🔙Assignments</div>
+            <div class="back" @click="goHistory">🔙Assignments</div>
             <ul>
                 <li><span>字体</span></li>
                 <li><span>段落</span></li>
@@ -12,11 +12,23 @@
     </div>
 </template>
 
+<script>
+export default{
+    methods: {
+        goHistory(){
+            this.$router.go(-1);
+        }
+    }
+    
+}
+</script>
+
 <style lang="scss">
     .article_head{
         .back{
             height: 70px;
             line-height: 70px;
+            cursor: pointer;
         }
 
         ul{
@@ -32,7 +44,6 @@
                     padding: 10px 15px;
                     background: #fff;
                     font-size: 14px;
-                    cursor: pointer;
                 }
             }
         }
