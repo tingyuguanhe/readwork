@@ -33,16 +33,25 @@ export default{
         ul{
             display: flex;
             justify-content: space-between;
-            width: 300px;
             padding: 13px 0 0 0;
             li{
+                margin: 0 5px;
                 span{
+                    cursor: pointer;
                     display: inline-block;
                     border: 1px solid #e4e7ed;
                     border-radius: 4px;
                     padding: 10px 15px;
                     background: #fff;
                     font-size: 14px;
+                    &:hover{
+                        background: #f85415;
+                        color:#fff;
+                        border-color: #f85415;
+                    }
+                }
+                &:last-child{
+                    margin-right: 0;
                 }
             }
         }
