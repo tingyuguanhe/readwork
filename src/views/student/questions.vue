@@ -181,7 +181,7 @@
             answerNum(item, answer){
                 console.log(item);
                 console.log(answer);
-                _.map(item, child => {
+                _.map(item.answersData, child => {
                     child.selected = false;
                 })
                 answer.selected = !answer.selected;
@@ -262,6 +262,7 @@
                             display: inline-block;
                             width: 36px;
                             height: 36px;
+                            font-size: 20px;
                             border-radius: 50%;
                             border: 1px solid #ccc;
                             text-align: center;
@@ -269,7 +270,9 @@
                             margin-right: 18px;
                             cursor: pointer;
                             &.answer_selected{
-                                background: #f0f;
+                                background: #f85415;
+                                color:#fff;
+                                border-color: #f85415;
                             }
                         }
                     }
