@@ -30,13 +30,11 @@
                                
                                 <h3><span>{{index+1}}</span>{{item.title}}</h3>
                                 <ul>
-                                    <li v-for="(answer,indexIndex) in item.answersData" :key="indexIndex">
-                                      
-                                        <span v-if="indexIndex == 0" :class="{'answer_selected': answer.selected}" @click="answerNum(item,answer)">A</span>
-                                        <span v-else-if="indexIndex == 1"  :class="{'answer_selected': answer.selected}" @click="answerNum(item,answer)">B</span>
-                                        <span v-else-if="indexIndex == 2"  :class="{'answer_selected': answer.selected}" @click="answerNum(item,answer)">C</span>
-                                        <span v-else="indexIndex == 3"  :class="{'answer_selected': answer.selected}" @click="answerNum(item,answer)">D</span>
-                                        
+                                    <li v-for="(answer,indexIndex) in item.answersData" :key="indexIndex" @click="answerNum(item,answer)" :class="{'answer_selected': answer.selected}">
+                                        <span v-if="indexIndex == 0">A</span>
+                                        <span v-else-if="indexIndex == 1">B</span>
+                                        <span v-else-if="indexIndex == 2">C</span>
+                                        <span v-else="indexIndex == 3">D</span>
                                         {{answer.answer}}
                                     </li>
                                 </ul>
@@ -258,6 +256,16 @@
                         color:#838a8e;
                         font-size: 18px;
                         margin-bottom: 12px;
+                        cursor: pointer;
+                        &.answer_selected{
+                            color:#f85415;
+                            font-weight: 600;
+                            span{
+                                background: #f85415;
+                                color:#fff;
+                                border-color: #f85415;
+                            }
+                        }
                         span{
                             display: inline-block;
                             width: 36px;
@@ -269,11 +277,6 @@
                             line-height: 36px;
                             margin-right: 18px;
                             cursor: pointer;
-                            &.answer_selected{
-                                background: #f85415;
-                                color:#fff;
-                                border-color: #f85415;
-                            }
                         }
                     }
                 }
