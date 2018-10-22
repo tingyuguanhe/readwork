@@ -30,7 +30,6 @@ export default{
             line-height: 70px;
             cursor: pointer;
         }
-
         ul{
             display: flex;
             justify-content: space-between;

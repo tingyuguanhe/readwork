@@ -38,11 +38,18 @@ export default{
         }else if(type == 'questions'){
             this.box = document.getElementsByClassName('article_content_tabs')[2];
         }
-        
         this.box.addEventListener('scroll', this.handleScroll);
 
         this.activeName2 = type;
         this.article_content_tabs.height = window.innerHeight-300 + "px";
+
+        window.addEventListener('resize', ()=>{
+            // 变化后需要做的事
+            if(window.innerHeight > 300){
+                this.article_content_tabs.height = window.innerHeight-300 + "px";
+            }
+            
+        })
     },
     watch: {
         'scrollHeight': function(newVal, oldVal){
@@ -71,6 +78,10 @@ export default{
 <style lang="scss">
 .tabs{
     width: 100%;
+}
+.el-tabs--border-card>.el-tabs__header .el-tabs__item{
+    font-size: 18px;
+    color: #333;
 }
 .el-tabs--border-card{
     width: 100%;

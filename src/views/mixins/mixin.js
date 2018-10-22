@@ -14,6 +14,7 @@ export default{
         },
         getScrollTop(h){
             this.scrollTop = h;
-        }
+        },
+        
     }
 }

@@ -28,13 +28,15 @@
                             </div>
                             <div class="questions_list" v-for="(item,index) in questionsDataList" :key="index">
                                
-                                <h3><span>{{index}}</span>{{item.title}}</h3>
+                                <h3><span>{{index+1}}</span>{{item.title}}</h3>
                                 <ul>
                                     <li v-for="(answer,indexIndex) in item.answersData" :key="indexIndex">
-                                        <span v-if="indexIndex == 0">A</span>
-                                        <span v-else-if="indexIndex == 1">B</span>
-                                        <span v-else-if="indexIndex == 2">C</span>
-                                        <span v-else="indexIndex == 3">D</span>
+                                      
+                                        <span v-if="indexIndex == 0" :class="{'answer_selected': answer.selected}" @click="answerNum(item,answer)">A</span>
+                                        <span v-else-if="indexIndex == 1"  :class="{'answer_selected': answer.selected}" @click="answerNum(item,answer)">B</span>
+                                        <span v-else-if="indexIndex == 2"  :class="{'answer_selected': answer.selected}" @click="answerNum(item,answer)">C</span>
+                                        <span v-else="indexIndex == 3"  :class="{'answer_selected': answer.selected}" @click="answerNum(item,answer)">D</span>
+                                        
                                         {{answer.answer}}
                                     </li>
                                 </ul>
@@ -169,13 +171,21 @@
 
                         ]
                     }
-                ]
+                ],
+                answerSelectNum: ''    
             }
         },
         components:{articleTabs,articleHead},
         mixins:[mixin],
         methods: {
-           
+            answerNum(item, answer){
+                console.log(item);
+                console.log(answer);
+                _.map(item, child => {
+                    child.selected = false;
+                })
+                answer.selected = !answer.selected;
+            }   
         }
     }
     </script>
@@ -235,11 +245,12 @@
                         display: inline-block;
                         height: 36px;
                         width: 36px;
-                        background: #000;
+                        background: #333;
                         color: #fff;
                         text-align: center;
                         line-height: 36px;
                         margin-right: 18px;
+                        
                     }
                 }
                 ul{
@@ -256,7 +267,10 @@
                             text-align: center;
                             line-height: 36px;
                             margin-right: 18px;
-                            
+                            cursor: pointer;
+                            &.answer_selected{
+                                background: #f0f;
+                            }
                         }
                     }
                 }

@@ -99,7 +99,7 @@
         }
     }
     .el-header{
-        padding: 0;
+        padding: 0 !important;
     }
 </style>
 

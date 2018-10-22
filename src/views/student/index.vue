@@ -275,7 +275,7 @@ export default{
             }
             .article_title{
                 color: #f85415;
-                font-size: 22px;
+                font-size: 24px;
             }
             .has_audio,.has_intro{
                 font-size: 14px;
