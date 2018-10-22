@@ -65,6 +65,16 @@
                         </ul>
                     </div>
                 </div>
+                <!-- 分页 -->
+                <div class="page_block">
+                    <el-pagination
+                        @current-change="handleCurrentChange"
+                        :current-page.sync="currentPage"
+                        :page-size="10"
+                        layout="total, pager, next, jumper"
+                        :total="total">
+                    </el-pagination>
+                </div>
             </div>
         </div>
         
@@ -152,7 +162,9 @@ export default{
                     img: require('../../assets/imgs/4.jpg')
                 }
             ],
-            scrollFixed: false
+            scrollFixed: false,
+            currentPage: 4,
+            total: 80
 
         }
     },
@@ -162,6 +174,8 @@ export default{
     methods: {
         handleClick(tab) {
             console.log(this.activeIndex);
+            this.total = 30;
+            this.currentPage = 1;
         },
         viewArticle(item){
             this.$router.push({name:'articleStudent', params:{id: item.id, type: 'article'}});
@@ -176,6 +190,9 @@ export default{
                 this.scrollFixed = false;
             }
         },
+        handleCurrentChange(val) {
+            console.log(`当前页: ${val}`);
+        }
     }
 }
 </script>
